@@ -26,7 +26,7 @@ router.post("/register", async (req, res) => {
   const user = await User.create({ email: req.body.email, password: hashed });
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-  const link = `${process.env.BASE_URL}/api/auth/verify/${token}`;
+  const link = `https://todo-api-pied-seven.vercel.app/api/auth/verify/${token}`;
 
   await transporter.sendMail({
     to: user.email,
